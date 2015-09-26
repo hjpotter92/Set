@@ -7,7 +7,7 @@ var express = require('express'),
     app = express(),
     router = express.Router();
 
-var api = require('./routes/api');
+var api = require('./api/puzzle');
 
 // serves favicon (is it static?) 
 app.use(favicon(__dirname + '/public/favicon.ico'));
