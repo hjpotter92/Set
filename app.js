@@ -4,12 +4,20 @@ var express = require('express'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    app = express();
+    app = express(),
+    router = express.Router();
 
-app.use(function(req, res){
-  var data = '<h1>hello world</h1>';
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end(data);
-})
+var api = require('./routes/api');
+
+// serves favicon (is it static?) 
+app.use(favicon(__dirname + '/public/favicon.ico'));
+// logs all the call coming on server
+app.use(logger('dev'));
+// "/api" from the url will be consumed in the next call
+// if url doesn't have "/api", then it is assumed to be 
+// a call for static elements
+app.use('/api', api);
+// to serve static assets of server
+app.use(express.static('public'));
 
 app.listen(5858);
