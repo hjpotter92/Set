@@ -5,10 +5,13 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     app = express(),
-    router = express.Router();
+    router = express.Router(),
+    http = require('http');
 
 var api = require('./api/puzzle');
 
+// making port binding dynamic
+app.set('port', process.env.PORT || 5858)
 // serves favicon (is it static?) 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 // logs all the call coming on server
@@ -20,4 +23,6 @@ app.use('/api', api);
 // to serve static assets of server
 app.use(express.static('public'));
 
-app.listen(5858);
+http.createServer(app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+})
