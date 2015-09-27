@@ -3,19 +3,22 @@ var set = angular.module('set', []);
 set.controller('deckController',
 function($scope){
 	$scope.cards = [];
-	var Card = function(colors, shades, shapes){
+	$scope.getNumber = function(num){
+		return new Array(num);
+	}
+	var Card = function(iconColors, bgColors, shapes){
 		return {
-			color: colors[2*Math.random()],
-			shade: shades[2*Math.random()],
-			shape: shades[2*Math.random()],
-			count: Math.ceil(3*Math.random())
+			iconColor: iconColors[Math.floor(Math.random() * 3)],
+			bgColor: bgColors[Math.floor(Math.random() * 3)],
+			icon: shapes[Math.floor(Math.random() * 3)],
+			count: Math.floor(Math.random() * 3) + 1
 		};
 	};
 	for(var i = 0; i < 12; i++){
 		$scope.cards.push(new Card(
-			['red', 'green', 'violet'], 
-			['emtpy', 'solid', 'partial'], 
-			['dot', 'cat', 'bat']
+			['red', 'green', 'blue'], 
+			['white', 'yellow', 'pink'], 
+			['bolt', 'child', 'heartbeat']
 		));
 	}
 });
