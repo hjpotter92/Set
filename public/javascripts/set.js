@@ -90,8 +90,7 @@ function($scope){
 			}
 			var isSet = checkSet(selectedCards[0], selectedCards[1], selectedCards[2]);
 			alert(isSet);
-		}
-			
+		}	
 	}
 	 
 	$scope.getNumber = function(num){
