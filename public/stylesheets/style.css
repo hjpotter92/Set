@@ -1,12 +1,44 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color: cadetblue;
 }
 
-a {
-  color: #00B7FF;
+.deck{
+	background-color: green;
+	max-width: 90%
 }
 
-main{
-  color: #A1B422;
+.card{
+	float: left;
+	background-color: white;
+	word-wrap: break-word;
+	padding: 2em;
+	margin: 2em;
+	width: 10em;
+	height: 20em;
+}
+
+.shape{
+	width: 0.5em;
+	height: 0.5em;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
 }
