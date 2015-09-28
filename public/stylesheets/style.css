@@ -5,7 +5,9 @@ body {
 .deck{
 	background-color: FDDFAD;
 	width: 75em;
-	margin: 0 auto;
+	margin: 2em auto;
+	border-radius: 1em;
+	box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
 }
 
 .card{
@@ -14,6 +16,8 @@ body {
 	height: 12em;
 	margin: 3em 3em;
 	border: solid;
+	border-width: 0.1em;
+	box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
 
 }
 
