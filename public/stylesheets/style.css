@@ -7,9 +7,10 @@ body {
 	background-color: FDDFAD;
 	width: 70%;
 	height: 81vh;
-	margin: 10vh 25% 9vh 25%;
+	margin: 9vh 15% 9vh 15%;
 	border-radius: 1%;
 	box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+	padding: 0.5vh 0;
 }
 
 .card{
