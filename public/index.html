@@ -7,10 +7,11 @@
 	</head>
 	<body ng-app="set">
 		<div class="deck" ng-controller="deckController" >
-			<div class="card" ng-repeat="card in cards track by card.id" ng-style="{'background-color': card.bgColor}" ng-click="toggleCard(card.id)", ng-class="{'selected': isSelected[card.id]}">
-				<div class="shape" ng-repeat="i in getNumber(card.count) track by $index">
-					<i class="fa fa-{{card.icon}}" ng-style="{'color': card.iconColor}"></i>
+			<div class="card" ng-repeat="card in cards track by card.id" ng-style="{'background-color': card.bgColor}" ng-click="toggleCard(card.id)">
+				<div class="shapes">
+					<i class="fa fa-{{card.icon}}" ng-style="{'color': card.iconColor}"  ng-repeat="i in getNumber(card.count) track by $index"></i>
 				</div>
+				<div ng-class="{'selected': isSelected[card.id]}"></div>
 			</div>
 			<div class="clearfix"></div>
 		</div>
