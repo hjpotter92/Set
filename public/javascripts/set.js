@@ -15,7 +15,7 @@ function($scope){
 		this.count = Math.floor(Math.random() * 3) + 1;
 		this.equals = function (other){
 			if( this.iconColor == other.iconColor &&
-				this.bgColors == other.bgColor &&
+				this.bgColor == other.bgColor &&
 				this.icon == other.icon &&
 				this.count == other.count
 			){
