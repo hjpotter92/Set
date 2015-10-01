@@ -1,0 +1,11 @@
+.deck.failure{
+    animation-name: failureDeckAnimation;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+}
+
+@keyframes failureDeckAnimation
+{
+    0%   { background: -webkit-gradient(radial, center center, 0, center center, 500, from(Red), to(Red)); }
+    100% { background: -webkit-gradient(radial, center center, 0, center center, 500, from(#D0C07B), to(#B0B05B)); }
+}

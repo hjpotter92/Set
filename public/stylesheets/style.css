@@ -1,14 +1,15 @@
 body {
-	background-color: FFFFCC;
+	background: -webkit-gradient(radial, center center, 0, center center, 1460, from(#1a82f7), to(#2F2727));
 	margin: 0;
 }
 
 .deck{
-	background-color: FDDFAD;
-	width: 70%;
+	background-color: ;
+	background: -webkit-gradient(radial, center center, 0, center center, 500, from(#D0C07B), to(#B0B05B));
+	width: 75%;
 	height: 81vh;
-	margin: 9vh 15% 9vh 15%;
-	border-radius: 1%;
+	margin: 9vh auto;
+	border-radius: 3%;
 	box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
 	padding: 0.5vh 0;
 }
@@ -20,20 +21,23 @@ body {
 	height: 25vh;
 	margin: 1vh 2.5% 1vh 2.5%;
 	border-radius: 5%;
-	box-shadow: 0px 0px 13px -2px rgba(0,0,0,1);
+	box-shadow: 5px 5px 10px Black;
 }
 
 .selected{
 	position: absolute;
 	bottom: 0;
-	background-color: red;
+	background-color: IndianRed;
 	height: 2vh;
 	width: 100%;
 }
 
-.shapes{
-	margin: 0 auto;
+.shape{
+	text-align: center;
+	width: 100%;
+	margin: 1vh 0;
 	font-size: 6vh;
+	text-shadow: 5px 5px 13px Black;
 }
 
 .clearfix{

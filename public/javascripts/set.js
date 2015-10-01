@@ -1,13 +1,13 @@
-var set = angular.module('set', []);
+var set = angular.module('set', ['ngAnimate']);
 
 set.controller('deckController',
-function($scope){
+function($scope, $timeout){
 	
 	// Constructor of new card
 	var Card = function(id){
-		var iconColors = ['red', 'green', 'blue'];
-		var bgColors = ['white', 'yellow', 'pink'];
-		var shapes = ['bolt', 'child', 'heartbeat'];
+		var iconColors = ['BurlyWood', '#2DBD75', 'RebeccaPurple'];
+		var bgColors = ['#50AD58', '#BF7F6B', '#4374C4'];
+		var shapes = ['asterisk', 'cloud', 'heart'];
 		this.id = id;
 		this.iconColor = iconColors[Math.floor(Math.random() * 3)];
 		this.bgColor = bgColors[Math.floor(Math.random() * 3)];
@@ -62,8 +62,9 @@ function($scope){
 		return true;				
 	};
 	
-	// Current status of deck
+	// Starting deck
 	$scope.selectedCount = 0;
+	$scope.deckState = 'waiting';
 	$scope.isSelected = [];
 	for(var i = 0; i < 12; i++)
 		$scope.isSelected.push(false);
@@ -78,18 +79,26 @@ function($scope){
 			$scope.selectedCount -= 1;
 			$scope.isSelected[id] = false;
 		}
-		
 		if($scope.selectedCount == 3){
-			var selectedCards = [];
-			for(i = 0; i < 12; i++){
-				if($scope.isSelected[i] == true){
-					selectedCards.push($scope.cards[i]);
-					$scope.isSelected[i] = false;
-					$scope.selectedCount -= 1;
+			$timeout(function(){
+				var selectedCards = [];
+				for(i = 0; i < 12; i++){
+					if($scope.isSelected[i] == true){
+						selectedCards.push($scope.cards[i]);
+						$scope.isSelected[i] = false;
+						$scope.selectedCount -= 1;
+					}
 				}
-			}
-			var isSet = checkSet(selectedCards[0], selectedCards[1], selectedCards[2]);
-			alert(isSet);
+				var isSet = checkSet(selectedCards[0], selectedCards[1], selectedCards[2]);
+				if(isSet) $scope.deckState = 'success';
+				else $scope.deckState = 'failure';
+				$timeout(function(){
+					$scope.deckState = 'waiting';
+				}, 500);
+			}, 500);
+		}
+		else{
+			$scope.deckState = 'waiting'
 		}	
 	}
 	 
