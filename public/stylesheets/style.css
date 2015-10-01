@@ -6,7 +6,7 @@ body {
 .deck{
 	background-color: ;
 	width: 70%;
-	max-width: 900px;
+	max-width: 700px;
 	background: -webkit-gradient(radial, center center, 0, center center, 500, from(#D0C07B), to(#B0B05B));
 	height: 81vh;
 	margin: 9vh auto;
