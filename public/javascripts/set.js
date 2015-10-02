@@ -43,21 +43,21 @@ function($scope, $timeout){
 	
 	// check if three card form set
 	var checkSet = function(a, b, c){
-		if(a.iconColor == b.iconColor && a.iconColor != c.iconColor)
+		if(a.iconColor == b.iconColor && (a.iconColor != c.iconColor || b.iconColor != c.iconColor))
 			return false;
-		if(a.bgColor == b.bgColor && a.bgColor != c.bgColor)
+		if(a.bgColor == b.bgColor && (a.bgColor != c.bgColor || b.bgColor != c.bgColor))
 			return false;
-		if(a.icon == b.icon && a.icon != c.icon)
+		if(a.icon == b.icon && (a.icon != c.icon || b.icon != c.icon))
 			return false;
-		if(a.count == b.count && a.count != c.count)
+		if(a.count == b.count && (a.count != c.count || b.count != c.count))
 			return false;	
-		if(a.iconColor != b.iconColor && a.iconColor == c.iconColor)
+		if(a.iconColor != b.iconColor && (a.iconColor == c.iconColor || b.iconColor == c.iconColor))
 			return false;
-		if(a.bgColor != b.bgColor && a.bgColor == c.bgColor)
+		if(a.bgColor != b.bgColor && (a.bgColor == c.bgColor || b.bgColor == c.bgColor))
 			return false;
-		if(a.icon != b.icon && a.icon == c.icon)
+		if(a.icon != b.icon && (a.icon == c.icon || b.icon == c.icon))
 			return false;
-		if(a.count != b.count && a.count == c.count)
+		if(a.count != b.count && (a.count == c.count || b.count == c.count))
 			return false;				
 		return true;				
 	};

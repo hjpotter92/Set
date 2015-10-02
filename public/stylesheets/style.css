@@ -3,14 +3,13 @@ body {
 	margin: 0;
 }
 
-.deck{
-	background-color: ;
+.deck {
 	width: 70%;
 	max-width: 700px;
 	background: -webkit-gradient(radial, center center, 0, center center, 500, from(#D0C07B), to(#B0B05B));
 	height: 81vh;
 	margin: 9vh auto;
-	border-radius: 3%;
+	border-radius: 2% / 2%;
 	box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
 	padding: 0.5vh 0;
 }
@@ -20,17 +19,13 @@ body {
 	float: left;
 	width: 20%;
 	height: 25vh;
-	margin: 1vh 2.5% 1vh 2.5%;
+	margin: 1vh 2.5%;
 	border-radius: 5%;
 	box-shadow: 5px 5px 10px Black;
 }
 
-.selected{
-	position: absolute;
-	bottom: 0;
-	background-color: IndianRed;
-	height: 2vh;
-	width: 100%;
+.card.selected{
+	box-shadow: 0px 0px 1vh White, 0px 0px 0.5vh Gray;
 }
 
 .shape{
