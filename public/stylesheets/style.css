@@ -6,7 +6,7 @@ body {
 .deck {
 	width: 70%;
 	max-width: 700px;
-	background: -webkit-gradient(radial, center center, 0, center center, 500, from(#D0C07B), to(#B0B05B));
+	background-color: #D0C07B;
 	height: 81vh;
 	margin: 9vh auto;
 	border-radius: 2% / 2%;
@@ -21,7 +21,7 @@ body {
 	height: 25vh;
 	margin: 1vh 2.5%;
 	border-radius: 5%;
-	box-shadow: 5px 5px 10px Black;
+	box-shadow: 2px 2px 10px Black;
 }
 
 .card.selected{

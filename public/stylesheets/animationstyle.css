@@ -1,25 +1,25 @@
 .deck.failure{
     animation-name: failureDeckAnimation;
     animation-duration: 1.5s;
+    animation-timing-function: ease-out;
     animation-iteration-count: infinite;
 }
 
 @keyframes failureDeckAnimation
 {
-    0%   { background: -webkit-gradient(radial, center center, 0, center center, 500, from(Red), to(Red)); }
-    100% { background: -webkit-gradient(radial, center center, 0, center center, 500, from(#D0C07B), to(#B0B05B)); }
+    50%  { background-color: Red; }
+    100% { background-color: #D0C07B; }
 }
 
 .deck.success{
     animation-name: successDeckAnimation;
     animation-duration: 1.5s;
+    animation-timing-function: ease-out;        
     animation-iteration-count: infinite;
 }
 
 @keyframes successDeckAnimation
 {
-    0%{
-        box-shadow: 0px 0px 10vh 10vh White, 0px 0px 0.5vh Gray;
-    }
-    100% { box-shadow: 0px 0px 1vh White, 0px 0px 0.5vh Gray; }
+    0%   { box-shadow: 0px 0px 5vh White, 0px 0px 2vh  Black; }
+    100% { box-shadow: 0px 0px 20vh White, 0px 0px 10vh Black; }
 }

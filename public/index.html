@@ -8,11 +8,14 @@
 		<script src="javascripts/set.js"></script>
 	</head>
 	<body ng-app="set" ng-controller="deckController">
-		<div class="deck" ng-class="deckState">
-			<div ng-class="{'selected': isSelected[card.id]}" class="card" ng-repeat="card in cards track by card.id" ng-style="{'background-color': card.bgColor}" ng-click="toggleCard(card.id)">
+		<div class="deck" ng-class="state">
+			<div ng-class="{'selected': deck.isSelected[card.id]}" class="card" ng-repeat="card in deck.cards track by card.id" ng-style="{'background-color': card.bgColor}" ng-click="toggleCard(card.id)">
 				<i class="fa fa-{{card.icon}} shape" ng-style="{'color': card.iconColor}" ng-repeat="i in getNumber(card.count) track by $index"></i>
 			</div>
 			<div class="clearfix"></div>
+		</div>
+		<div class="score-card">
+			{{deck.setsFound.length}}/{{deck.totalSets.length}}
 		</div>
 	</body>
 </html>

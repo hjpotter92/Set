@@ -5,13 +5,14 @@ function($scope, $timeout){
 	
 	// Constructor of new card
 	var Card = function(id){
-		var iconColors = ['BurlyWood', '#2DBD75', 'RebeccaPurple'];
-		var bgColors = ['#50AD58', '#BF7F6B', '#4374C4'];
-		var shapes = ['asterisk', 'cloud', 'heart'];
+		this.iconColors = ['BurlyWood', '#2DBD75', 'RebeccaPurple'];
+		this.bgColors = ['#50AD58', '#BF7F6B', '#4374C4'];
+		this.shapes = ['asterisk', 'cloud', 'heart'];
+		
 		this.id = id;
-		this.iconColor = iconColors[Math.floor(Math.random() * 3)];
-		this.bgColor = bgColors[Math.floor(Math.random() * 3)];
-		this.icon = shapes[Math.floor(Math.random() * 3)];
+		this.iconColor = this.iconColors[Math.floor(Math.random() * 3)];
+		this.bgColor = this.bgColors[Math.floor(Math.random() * 3)];
+		this.icon = this.shapes[Math.floor(Math.random() * 3)];
 		this.count = Math.floor(Math.random() * 3) + 1;
 		this.equals = function (other){
 			if( this.iconColor == other.iconColor &&
@@ -26,24 +27,9 @@ function($scope, $timeout){
 			}
 		};
 	};
-	
-	// Build 12 unique cards
-	$scope.cards = [];
-	var temp = new Card(0);
-	for(var i = 0; i < 12; i++){
-		for(var j = 0; j < i; j++){
-			if(temp.equals($scope.cards[j])){
-				temp = new Card(i);
-				j = -1;
-			}
-		}
-		$scope.cards.push(temp);
-		temp = new Card(i+1);
-	}
-	
-	
-	// check if three card form set
-	var checkSet = function(a, b, c){
+
+	// method to check if three cards form a set
+	Card.checkSet = function(a, b, c){
 		if(a.iconColor == b.iconColor && (a.iconColor != c.iconColor || b.iconColor != c.iconColor))
 			return false;
 		if(a.bgColor == b.bgColor && (a.bgColor != c.bgColor || b.bgColor != c.bgColor))
@@ -62,39 +48,116 @@ function($scope, $timeout){
 			return false;				
 		return true;				
 	};
-	
-	// Starting deck
-	$scope.selectedCount = 0;
-	$scope.deckState = 'waiting';
-	$scope.isSelected = [];
-	for(var i = 0; i < 12; i++)
-		$scope.isSelected.push(false);
-		
-	// On card click
-	$scope.toggleCard = function(id){
-		if($scope.isSelected[id] == false){
-			$scope.selectedCount += 1;
-			$scope.isSelected[id] = true;
+
+	// create a new card different from the ones
+	// in input list with a given id
+	Card.generateNew = function(listCards, id){
+		var temp = new Card(id);
+		for(var j = 0; j < listCards.length; j++){
+			if(temp.equals(listCards[j])){
+				temp = new Card(id);
+				j = -1;
+			}
 		}
-		else{
-			$scope.selectedCount -= 1;
-			$scope.isSelected[id] = false;
-		}
-		if($scope.selectedCount == 3){
-			$timeout(function(){
-				var selectedCards = [];
-				for(i = 0; i < 12; i++){
-					if($scope.isSelected[i] == true){
-						selectedCards.push($scope.cards[i]);
-						$scope.isSelected[i] = false;
-						$scope.selectedCount -= 1;
-					}
+		return temp;
+	}
+
+	// find all sets
+	Card.findAllSets = function(listCards){
+		var setList = []
+		for(var i = 0; i < 12; i++){
+			for(var j = i + 1; j < 12; j++){
+				for(var k = j + 1; k < 12; k++){
+					if(Card.checkSet(listCards[i], listCards[j], listCards[k]))
+						setList.push([listCards[i].id, listCards[j].id, listCards[k].id]);
 				}
-				var isSet = checkSet(selectedCards[0], selectedCards[1], selectedCards[2]);
-				if(isSet) $scope.deckState = 'success';
-				else $scope.deckState = 'failure';
+			}
+		}
+		return setList;
+	}
+
+	// Constructor for deck object representing deck state
+	var Deck = function(count){
+		if(count > 81)
+			return null;
+		this.cardsSelected = 0;
+		this.setsFound = [];
+		this.totalSets = 0;
+		this.cards = [];
+		this.selectedCards = [];
+		this.isSelected = [];
+
+		// generate new cards
+		for(var i = 0; i < count; i++)
+			this.cards.push(Card.generateNew(this.cards, i));
+
+		// find all sets on deck
+		this.totalSets = Card.findAllSets(this.cards);
+
+		// mark all cards as unselected
+		for(var i = 0; i < count; i++){
+			this.isSelected.push(false);
+		}
+	
+		// toggle card selection
+		this.toggleCardSelection = function(id){
+			if(this.isSelected[id] == true){
+				for(var i = 0; i < this.selectedCards.length; i++)
+					if(id == this.selectedCards[i])
+						break;
+				this.selectedCards.splice(i, 1);
+				this.isSelected[id] = false;
+			}
+			else{
+				this.isSelected[id] = true;
+				this.selectedCards.push(id);
+			}
+		}
+
+		// check if new set found. Return true or false.
+		// clears selected cards if selection is wrong.
+		// also push the set if new. Push as 3 element array
+		// comprising of the id, in increasing order
+		this.checkIfNewSet = function(){
+			var isSet = Card.checkSet(this.cards[this.selectedCards[0]], this.cards[this.selectedCards[1]], this.cards[this.selectedCards[2]]);
+			if(!isSet){
+				return false;
+			}
+
+			var uniqueSetFound = true;
+			this.selectedCards.sort();
+			for(var i = 0; i < this.setsFound.length && uniqueSetFound == true; i++)
+				if(this.setsFound[i][0] == this.selectedCards[0] && this.setsFound[i][1] == this.selectedCards[1] && this.setsFound[i][2] == this.selectedCards[2])
+					uniqueSetFound = false;
+			if(uniqueSetFound){
+				this.setsFound.push(this.selectedCards);
+				return true;
+			}
+			return false;
+		}
+
+		// clears selection
+		this.clearSelection = function(){
+			this.isSelected = [];
+			this.selectedCards = [];
+			for(var i = 0; i < count; i++){
+				this.isSelected.push(false);
+			}
+		}
+	}
+
+	$scope.deck = new Deck(12);	
+	$scope.state = 'waiting';
+	$scope.toggleCard = function(id){
+		$scope.deck.toggleCardSelection(id);
+		if($scope.deck.selectedCards.length == 3){
+			$timeout(function(){
+				$isSet = $scope.deck.checkIfNewSet();
+				$scope.deck.clearSelection();
+				if($isSet) $scope.state = 'success';
+				else $scope.state = 'failure';
 				$timeout(function(){
-					$scope.deckState = 'waiting';
+					$scope.state = 'waiting';
 				}, 500);
 			}, 500);
 		}
@@ -104,6 +167,6 @@ function($scope, $timeout){
 	}
 	 
 	$scope.getNumber = function(num){
-	return new Array(num);
-}
+		return new Array(num);
+	}
 });
