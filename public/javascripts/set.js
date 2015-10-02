@@ -41,6 +41,7 @@ function($scope, $timeout){
 		temp = new Card(i+1);
 	}
 	
+	
 	// check if three card form set
 	var checkSet = function(a, b, c){
 		if(a.iconColor == b.iconColor && (a.iconColor != c.iconColor || b.iconColor != c.iconColor))
