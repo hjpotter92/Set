@@ -10,11 +10,14 @@
 	<body ng-app="set">
 		<div class="setSinglePageApp" ng-controller="deckController">
 			<div class="sideBar">
-				<div class="scoreCard" ng-class="state">
+				<div class="set banner">
+					Set
+				</div>
+				<div class="scoreCard banner" ng-class="state">
 					{{deck.setsFound.length}}/{{deck.totalSets.length}}
 				</div>
-				<div class="genNewButton" ng-click="generateNewDeck()">
-					Generate New!
+				<div class="genNewButton banner" ng-click="generateNewDeck()">
+					<i class="fa fa-refresh" ></i>
 				</div>
 			</div>
 			<div class="deck">
