@@ -1,9 +1,6 @@
-// bug if set is undefined
-// Deck.js has dependecy on Card.js
 Set = Set || {}
 
 Set.Deck = (function(Set){
-	var Card = Set.Card;
 	var Deck = function(count, minSet, maxSet){
 		// check is such deck can be generated
 		if(count > 81 || count < 1 || minSet > maxSet || minSet > ( (count) * (count - 1) ) / 6){
@@ -22,8 +19,8 @@ Set.Deck = (function(Set){
 		while(this.cards.length != count || this.totalSets.length < minSet || this.totalSets.length > maxSet){
 			this.cards = [];
 			for(var i = 0; i < count; i++)
-				this.cards.push(Card.generateNew(this.cards, i));
-			this.totalSets = Card.findAllSets(this.cards);
+				this.cards.push(Set.Card.generateNew(this.cards, i));
+			this.totalSets = Set.Card.findAllSets(this.cards);
 		}
 
 		// mark all cards as unselected
@@ -51,7 +48,7 @@ Set.Deck = (function(Set){
 		// also push the set if new. Push as 3 element array
 		// comprising of the id, in increasing order
 		this.checkIfNewSet = function(){
-			var isSet = Card.checkSet(this.cards[this.selectedCards[0]], this.cards[this.selectedCards[1]], this.cards[this.selectedCards[2]]);
+			var isSet = Set.Card.checkSet(this.cards[this.selectedCards[0]], this.cards[this.selectedCards[1]], this.cards[this.selectedCards[2]]);
 			if(!isSet){
 				return false;
 			}
@@ -78,4 +75,4 @@ Set.Deck = (function(Set){
 		}
 	}
 	return Deck;
-})(Set || {});
+})(Set);
