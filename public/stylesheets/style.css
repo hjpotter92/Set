@@ -3,35 +3,79 @@ body {
 	margin: 0;
 }
 
+.sideBar{
+	/* Layout */
+	width: 20%;
+	height: 100vh;
+	float: left;
+
+	/* Design */
+	background-color: #5C6061;
+	box-shadow: 5px 0 20px Black;
+	font-variant: small-caps;
+	font-family: Georgia;
+	font-weight: bold;
+}
+
+.scoreCard{
+	/* Layout */
+	margin: 2vh auto;
+
+	/* Design */
+	font-size: 5vh;
+	box-shadow: 0 0vh 2vh Black;
+	text-align: center;
+}
+
+.genNewButton{
+	/* Layout */
+	margin: 2vh auto;
+	padding: 2vh 0;
+
+	/* Design */
+	text-align: center;
+	box-shadow: 0 0vh 2vh Black;
+}
+
 .deck {
-	width: 70%;
-	max-width: 700px;
-	background-color: #D0C07B;
+	/* Layout */
+	width: 60%;
 	height: 81vh;
-	margin: 9vh auto;
+	margin: 9vh 10%;
+	float: left;
+
+	/* Design */
+	background-color: #D0C07B;
 	border-radius: 2% / 2%;
 	box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
 	padding: 0.5vh 0;
 }
 
 .card{
+	/* Layout */
 	position: relative;
 	float: left;
 	width: 20%;
 	height: 25vh;
 	margin: 1vh 2.5%;
+
+	/* Design */
 	border-radius: 5%;
 	box-shadow: 2px 2px 10px Black;
 }
 
 .card.selected{
+	/* Design */
 	box-shadow: 0px 0px 1vh White, 0px 0px 0.5vh Gray;
 }
 
 .shape{
+	/* Layout */
 	text-align: center;
 	width: 100%;
 	margin: 1vh 0;
+
+	/* Design */
 	font-size: 6vh;
 	text-shadow: 5px 5px 13px Black;
 }
