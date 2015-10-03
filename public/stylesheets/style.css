@@ -1,22 +1,23 @@
 /* Common */
 body {
-	background-color: LightSlateGray;
+	background-color: #1a82f7;
 	-webkit-user-select: none;
 	margin: 0 0;
 }
 
 .sideBar{
 	box-shadow: 0 0 1vh Black;
-	background-color: DodgerBlue;
+	background-color: #D0C07B;
 }
 
 .deck {
-	background-color: MediumOrchid;
+	background-color: #D0C07B;
 }
 
 .banner{
 	text-align: center;
-	background-color: LightCoral;
+	background-color: Gray;
+	color: Lavender;
 }
 
 .card{
@@ -60,7 +61,7 @@ body {
 
 	.deck {
 		width: 100%;
-		height: 88vh;
+		height: 89vh;
 	}
 
 	.card {
@@ -86,7 +87,7 @@ body {
 	.banner {
 		width: 100%;
 		height: 5vh;
-		font-size: 3vh;
+		font-size: 4vh;
 		padding: 2vh 0;
 		margin: 3vh 3vh;
 		box-shadow: -0.5vh 0.5vh 1vh Black;
