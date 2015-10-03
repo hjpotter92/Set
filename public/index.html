@@ -10,14 +10,14 @@
 	<body ng-app="set">
 		<div class="setSinglePageApp" ng-controller="deckController">
 			<div class="sideBar">
-				<div class="scoreCard">
+				<div class="scoreCard" ng-class="state">
 					{{deck.setsFound.length}}/{{deck.totalSets.length}}
 				</div>
 				<div class="genNewButton" ng-click="generateNewDeck()">
 					Generate New!
 				</div>
 			</div>
-			<div class="deck" ng-class="state">
+			<div class="deck">
 				<div ng-class="{'selected': deck.isSelected[card.id]}" class="card" ng-repeat="card in deck.cards" ng-style="{'background-color': card.bgColor}" ng-click="toggleCard(card.id)">
 					<i class="fa fa-{{card.icon}} shape" ng-style="{'color': card.iconColor}" ng-repeat="i in getNumber(card.count) track by $index"></i>
 				</div>
